@@ -1,72 +1,146 @@
 import type { Metadata } from "next";
-import { HOTEL_NAME, HOTEL_ADDRESS, HOTEL_PHONE, HOTEL_PHONE_HREF, BOOKING_URL } from "@/lib/constants";
+import { HOTEL_NAME, HOTEL_ADDRESS, HOTEL_PHONE, HOTEL_PHONE_HREF, BOOKING_URL, CHECK_IN, CHECK_OUT, BREAKFAST_HOURS } from "@/lib/constants";
 
-export const metadata: Metadata = { title: "Contact" };
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Contact Velkommen Inn in Clifton, Texas. Front desk available 24 hours. Call (254) 675-8999 or book direct online.",
+};
 
 export default function ContactPage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-20">
-      <h1 className="text-4xl font-bold font-serif text-[#1a2e4a] mb-3">Contact Us</h1>
-      <p className="text-gray-600 font-sans mb-12">
-        We&apos;re happy to answer questions and help plan your stay.
-      </p>
+    <>
+      {/* Header */}
+      <section className="bg-[#1a2e4a] text-white py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-[#c9a84c] text-sm tracking-[0.3em] uppercase mb-3 font-sans">
+            Velkommen Inn · Clifton, Texas
+          </p>
+          <h1 className="text-4xl sm:text-5xl font-bold font-serif mb-4">Contact Us</h1>
+          <p className="text-gray-300 max-w-2xl mx-auto font-sans">
+            Our front desk is available 24 hours a day. We&apos;re glad to answer questions
+            and help plan your stay.
+          </p>
+        </div>
+      </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div>
-          <h2 className="text-xl font-bold font-serif text-[#1a2e4a] mb-6">Get in Touch</h2>
-          <div className="space-y-5">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+
+          {/* Left column — contact details */}
+          <div className="lg:col-span-3 space-y-10">
+
             <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 font-sans mb-1">Hotel</p>
-              <p className="font-semibold text-[#1a2e4a]">{HOTEL_NAME}</p>
+              <h2 className="text-xl font-bold font-serif text-[#1a2e4a] mb-6">Get in Touch</h2>
+              <div className="space-y-5">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 font-sans mb-1">Hotel</p>
+                  <p className="font-semibold text-[#1a2e4a]">{HOTEL_NAME}</p>
+                  <p className="text-sm text-gray-500 font-sans mt-0.5">
+                    Professionally managed, independently operated
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 font-sans mb-1">Address</p>
+                  <address className="not-italic text-gray-700 font-sans text-sm leading-relaxed">
+                    {HOTEL_ADDRESS}
+                  </address>
+                  <p className="text-xs text-gray-400 font-sans mt-1">
+                    Clifton is the Norwegian Capital of Texas
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 font-sans mb-1">Phone</p>
+                  <a
+                    href={HOTEL_PHONE_HREF}
+                    className="text-[#c9a84c] font-semibold hover:text-[#b8943d] transition-colors font-sans"
+                  >
+                    {HOTEL_PHONE}
+                  </a>
+                  <p className="text-xs text-gray-400 font-sans mt-0.5">Front desk available 24 hours</p>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 font-sans mb-1">Reservations</p>
+                  <a
+                    href={BOOKING_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-sm font-semibold text-[#1a2e4a] hover:text-[#c9a84c] transition-colors font-sans"
+                  >
+                    Book direct online →
+                  </a>
+                </div>
+              </div>
             </div>
+
+            {/* Key info */}
             <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 font-sans mb-1">Address</p>
-              <address className="not-italic text-gray-700 font-sans">{HOTEL_ADDRESS}</address>
+              <h2 className="text-sm font-semibold uppercase tracking-widest text-gray-400 font-sans mb-4 border-b border-gray-200 pb-2">
+                Helpful Info
+              </h2>
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  { label: "Check-In", value: CHECK_IN },
+                  { label: "Check-Out", value: CHECK_OUT },
+                  { label: "Breakfast", value: `Daily ${BREAKFAST_HOURS}` },
+                  { label: "Front Desk", value: "24 Hours" },
+                  { label: "Parking", value: "Free On-Site" },
+                  { label: "Smoking", value: "Non-Smoking Property" },
+                ].map((item) => (
+                  <div key={item.label} className="bg-[#f9f5ef] rounded p-3 border border-gray-100">
+                    <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 font-sans mb-0.5">{item.label}</p>
+                    <p className="text-xs font-bold text-[#1a2e4a] font-sans">{item.value}</p>
+                  </div>
+                ))}
+              </div>
             </div>
+
+            {/* Service area */}
             <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 font-sans mb-1">Phone</p>
-              <a href={HOTEL_PHONE_HREF} className="text-[#c9a84c] font-semibold hover:text-[#b8943d] transition-colors font-sans">
-                {HOTEL_PHONE}
-              </a>
+              <h2 className="text-sm font-semibold uppercase tracking-widest text-gray-400 font-sans mb-3 border-b border-gray-200 pb-2">
+                Who We Serve
+              </h2>
+              <p className="text-sm text-gray-600 font-sans leading-relaxed">
+                Velkommen Inn proudly serves travelers visiting Clifton, Bosque County, Lake Whitney,
+                Meridian State Park, and the surrounding Central Texas area.
+              </p>
             </div>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 font-sans mb-1">Reservations</p>
+
+          </div>
+
+          {/* Right column — booking card */}
+          <div className="lg:col-span-2">
+            <div className="bg-[#1a2e4a] text-white rounded-lg p-7 sticky top-24">
+              <h2 className="text-xl font-bold font-serif mb-3">Ready to Book?</h2>
+              <p className="text-gray-300 text-sm font-sans leading-relaxed mb-6">
+                Book directly for the best available direct rate, accurate hotel policies, and
+                direct support from the hotel.
+              </p>
               <a
                 href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-sm font-semibold text-[#1a2e4a] hover:text-[#c9a84c] transition-colors font-sans"
+                className="inline-flex w-full items-center justify-center rounded bg-[#c9a84c] px-6 py-3 text-sm font-bold text-[#1a2e4a] hover:bg-[#b8943d] transition-colors"
               >
-                Book direct online →
+                Check Availability
               </a>
+              <a
+                href={HOTEL_PHONE_HREF}
+                className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors font-sans"
+              >
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.21 2.21z" />
+                </svg>
+                {HOTEL_PHONE}
+              </a>
+              <p className="mt-5 text-center text-xs text-gray-500 font-sans">
+                Front desk available 24 hours a day
+              </p>
             </div>
           </div>
-        </div>
 
-        <div className="bg-[#1a2e4a] text-white rounded-lg p-8">
-          <h2 className="text-xl font-bold font-serif mb-4">Ready to Book?</h2>
-          <p className="text-gray-300 text-sm font-sans leading-relaxed mb-6">
-            Book directly with us for the best available direct rate and direct hotel support.
-          </p>
-          <a
-            href={BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex w-full items-center justify-center rounded bg-[#c9a84c] px-6 py-3 text-sm font-bold text-[#1a2e4a] hover:bg-[#b8943d] transition-colors"
-          >
-            Check Availability
-          </a>
-          <a
-            href={HOTEL_PHONE_HREF}
-            className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors font-sans"
-          >
-            <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.21 2.21z" />
-            </svg>
-            {HOTEL_PHONE}
-          </a>
         </div>
       </div>
-    </div>
+    </>
   );
 }

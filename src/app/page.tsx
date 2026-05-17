@@ -5,13 +5,25 @@ import {
   HOTEL_PHONE,
   HOTEL_PHONE_HREF,
   BOOK_DIRECT_MESSAGE,
+  CHECK_IN,
+  CHECK_OUT,
+  BREAKFAST_HOURS,
 } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Velkommen Inn – Clifton, Texas",
   description:
-    "Welcome to Velkommen Inn in Clifton, TX. Comfortable rooms, warm hospitality, and a convenient location in the heart of the Texas Hill Country. Book direct.",
+    "Velkommen Inn is a professionally managed, independently operated hotel in Clifton, Texas — the Norwegian Capital of Texas. Book direct for the best available rate.",
 };
+
+const quickFacts = [
+  { label: "Check-In", value: CHECK_IN },
+  { label: "Check-Out", value: CHECK_OUT },
+  { label: "Breakfast", value: `Daily ${BREAKFAST_HOURS}` },
+  { label: "Parking", value: "Free On-Site" },
+  { label: "Wi-Fi", value: "Complimentary" },
+  { label: "Front Desk", value: "24 Hours" },
+];
 
 const features = [
   {
@@ -21,7 +33,8 @@ const features = [
       </svg>
     ),
     title: "Comfortable Rooms",
-    description: "Well-appointed guest rooms designed for rest and relaxation, whether you're here for one night or a longer stay.",
+    description:
+      "Choose from Queen or King rooms, including ADA accessible options. Every room includes a mini fridge, microwave, coffee maker, Smart DirecTV, and free Wi-Fi.",
     href: "/rooms",
   },
   {
@@ -31,7 +44,8 @@ const features = [
       </svg>
     ),
     title: "Quality Amenities",
-    description: "From complimentary Wi-Fi to on-site conveniences, enjoy everything you need for a comfortable stay.",
+    description:
+      "Complimentary breakfast daily, outdoor seasonal pool, fitness center, business center, guest laundry, free parking, and Level 2 EV charging.",
     href: "/amenities",
   },
   {
@@ -42,7 +56,8 @@ const features = [
       </svg>
     ),
     title: "Prime Location",
-    description: "Perfectly situated in Clifton, Texas — close to local attractions, dining, and the scenic Texas Hill Country.",
+    description:
+      "Conveniently located in Clifton — the Norwegian Capital of Texas — with easy access to Lake Whitney, Meridian State Park, the Bosque River, and downtown.",
     href: "/local-attractions",
   },
   {
@@ -51,8 +66,9 @@ const features = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
       </svg>
     ),
-    title: "Pet Friendly",
-    description: "Traveling with your furry companion? We welcome well-behaved pets. See our pet policy for details.",
+    title: "Dog Friendly",
+    description:
+      "Dogs are welcome in designated pet-friendly rooms. Please notify us in advance. Maximum 2 dogs per room. Pet fees apply.",
     href: "/pet-policy",
   },
   {
@@ -62,7 +78,8 @@ const features = [
       </svg>
     ),
     title: "Group Stays",
-    description: "Planning a group visit? We can accommodate groups and events. Contact us to discuss your group's needs.",
+    description:
+      "Planning a group trip to Bosque County or Lake Whitney? We can accommodate larger groups. Contact us to discuss your needs.",
     href: "/group-stays",
   },
   {
@@ -72,7 +89,8 @@ const features = [
       </svg>
     ),
     title: "Business Travel",
-    description: "Reliable Wi-Fi, a comfortable workspace, and a convenient location make us a great choice for business travelers.",
+    description:
+      "Stay productive with free Wi-Fi, an on-site business center, free parking, indoor corridor access, and a 24-hour front desk.",
     href: "/business-travel",
   },
 ];
@@ -92,15 +110,15 @@ export default function HomePage() {
         />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 md:py-36 text-center">
           <p className="text-[#c9a84c] text-sm tracking-[0.3em] uppercase mb-4 font-sans">
-            Clifton, Texas
+            The Norwegian Capital of Texas
           </p>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold font-serif leading-tight mb-6">
             Welcome to<br />
             <span className="text-[#c9a84c]">Velkommen Inn</span>
           </h1>
           <p className="max-w-2xl mx-auto text-lg text-gray-300 mb-10 leading-relaxed font-sans">
-            Your home away from home in the heart of Clifton, Texas. Comfortable rooms,
-            warm hospitality, and everything you need for a great stay.
+            A professionally managed, independently operated hotel in Clifton, Texas.
+            Comfortable rooms, complimentary breakfast, free parking, and a warm Texas welcome.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -120,6 +138,22 @@ export default function HomePage() {
               </svg>
               {HOTEL_PHONE}
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick facts bar */}
+      <section className="bg-white border-b border-gray-200">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 divide-x divide-gray-100">
+            {quickFacts.map((fact) => (
+              <div key={fact.label} className="py-4 px-4 text-center">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 font-sans mb-0.5">
+                  {fact.label}
+                </p>
+                <p className="text-sm font-bold text-[#1a2e4a] font-sans">{fact.value}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -146,8 +180,8 @@ export default function HomePage() {
             Everything You Need
           </h2>
           <p className="text-gray-600 max-w-xl mx-auto font-sans">
-            Velkommen Inn offers comfortable accommodations and quality amenities
-            in a convenient Clifton location.
+            Velkommen Inn proudly serves travelers visiting Clifton, Bosque County, Lake Whitney,
+            Meridian State Park, and the surrounding Central Texas area.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -182,9 +216,10 @@ export default function HomePage() {
               Find Us in Clifton, Texas
             </h2>
             <p className="text-gray-600 font-sans leading-relaxed mb-4">
-              Velkommen Inn is conveniently located in Clifton — the county seat of
-              Bosque County — surrounded by scenic Texas Hill Country landscapes,
-              local dining, and outdoor recreation.
+              Clifton is proudly known as the Norwegian Capital of Texas — a charming Central Texas
+              town with rich Scandinavian heritage, scenic Hill Country surroundings, and a
+              welcoming community. Velkommen Inn is conveniently located here, making it a great
+              base for exploring Bosque County, Lake Whitney, Meridian State Park, and beyond.
             </p>
             <address className="not-italic text-sm text-gray-700 mb-2 font-sans">
               1215 N Avenue G<br />
@@ -196,31 +231,25 @@ export default function HomePage() {
             >
               {HOTEL_PHONE}
             </a>
-            <div className="mt-6">
+            <div className="mt-6 flex flex-col gap-2">
               <Link
                 href="/local-attractions"
                 className="inline-flex items-center gap-1 text-sm font-semibold text-[#1a2e4a] hover:text-[#c9a84c] transition-colors font-sans"
               >
                 Explore local attractions →
               </Link>
+              <Link
+                href="/policies"
+                className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-[#c9a84c] transition-colors font-sans"
+              >
+                Check-in {CHECK_IN} · Check-out {CHECK_OUT} · 100% non-smoking property
+              </Link>
             </div>
           </div>
-          <div className="bg-gray-100 rounded-lg overflow-hidden aspect-video flex items-center justify-center">
-            <iframe
-              title="Velkommen Inn location map"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD-placeholder&q=1215+N+Avenue+G,+Clifton,+TX+76634"
-              className="min-h-52"
-            />
-            <noscript>
-              <p className="p-4 text-sm text-gray-600 font-sans">
-                Map of Velkommen Inn at 1215 N Avenue G, Clifton, TX 76634
-              </p>
-            </noscript>
+          <div className="bg-gray-100 rounded-lg overflow-hidden h-64 flex items-center justify-center">
+            <p className="text-sm text-gray-500 font-sans text-center px-6">
+              1215 N Avenue G, Clifton, TX 76634
+            </p>
           </div>
         </div>
       </section>
