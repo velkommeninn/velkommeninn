@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+:root {
+  --color-navy: #1a2e4a;
+  --color-gold: #c9a84c;
+  --color-cream: #f9f5ef;
+  --color-charcoal: #2d2d2d;
+}
+
+@theme inline {
+  --color-navy: var(--color-navy);
+  --color-gold: var(--color-gold);
+  --color-cream: var(--color-cream);
+  --color-charcoal: var(--color-charcoal);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+  font-family: Georgia, "Times New Roman", serif;
+}
