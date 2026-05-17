@@ -7,6 +7,8 @@ export const BOOKING_URL =
 export const BOOK_DIRECT_MESSAGE =
   "Book directly for the best available direct rate, accurate hotel policies, and direct support from the hotel.";
 
+export const SITE_URL = "https://www.velkommeninncliftontx.com";
+
 export const CHECK_IN = "2:00 PM";
 export const CHECK_OUT = "11:00 AM";
 export const BREAKFAST_HOURS = "6:00 AM – 9:00 AM";

@@ -4,15 +4,22 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BookDirectButton from "@/components/BookDirectButton";
 import MobileCallButton from "@/components/MobileCallButton";
+import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    template: "%s | Velkommen Inn",
-    default: "Velkommen Inn – Clifton, Texas",
+    template: "%s | Velkommen Inn – Clifton, TX",
+    default: "Velkommen Inn | Official Website | Hotel in Clifton, TX",
   },
   description:
-    "Velkommen Inn in Clifton, TX offers comfortable rooms, great amenities, and a warm Texas welcome. Book direct for the best available direct rate.",
-  metadataBase: new URL("https://velkommeninn.com"),
+    "Velkommen Inn is the official website for this hotel in Clifton, TX — the Norwegian Capital of Texas. Book direct for the best available direct rate.",
+  openGraph: {
+    siteName: "Velkommen Inn",
+    type: "website",
+    locale: "en_US",
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
