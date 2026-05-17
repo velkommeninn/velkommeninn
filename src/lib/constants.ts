@@ -1,31 +1,19 @@
-export const HOTEL_NAME = "Velkommen Inn";
-export const HOTEL_ADDRESS = "1215 N Avenue G, Clifton, TX 76634";
-export const HOTEL_PHONE = "(254) 675-8999";
-export const HOTEL_PHONE_HREF = "tel:+12546758999";
-export const BOOKING_URL =
-  "https://reservation.asiwebres.com/v5/RoomAvailability.aspx?id=6e5e44aa3b1b4949b6ed9c297569f595&lang=en&Curr=1";
-export const BOOK_DIRECT_MESSAGE =
-  "Book directly for the best available direct rate, accurate hotel policies, and direct support from the hotel.";
+// Re-exports from centralized data files.
+// Edit src/data/site.ts and src/data/navigation.ts to change these values.
+export {
+  HOTEL_NAME,
+  HOTEL_ADDRESS,
+  HOTEL_PHONE,
+  HOTEL_PHONE_HREF,
+  HOTEL_EMAIL,
+  BOOKING_URL,
+  BOOK_DIRECT_MESSAGE,
+  SITE_URL,
+  CHECK_IN,
+  CHECK_OUT,
+  BREAKFAST_HOURS,
+  SERVICE_AREA,
+} from "@/data/site";
 
-export const SITE_URL = "https://www.velkommeninncliftontx.com";
-
-export const CHECK_IN = "2:00 PM";
-export const CHECK_OUT = "11:00 AM";
-export const BREAKFAST_HOURS = "6:00 AM – 9:00 AM";
-
-export const SERVICE_AREA =
-  "Clifton, Bosque County, Lake Whitney, Meridian State Park, and the surrounding Central Texas area";
-
-export const NAV_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "Rooms", href: "/rooms" },
-  { label: "Amenities", href: "/amenities" },
-  { label: "Pet Policy", href: "/pet-policy" },
-  { label: "Group Stays", href: "/group-stays" },
-  { label: "Local Attractions", href: "/local-attractions" },
-  { label: "Business Travel", href: "/business-travel" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Policies", href: "/policies" },
-  { label: "Contact", href: "/contact" },
-  { label: "Booking Notice", href: "/official-booking-notice" },
-];
+export { NAV_LINKS } from "@/data/navigation";
+export type { NavLink } from "@/data/navigation";

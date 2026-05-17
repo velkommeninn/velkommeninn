@@ -2,19 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
-import { HOTEL_PHONE, HOTEL_PHONE_HREF, CHECK_IN, CHECK_OUT, SITE_URL } from "@/lib/constants";
+import { HOTEL_PHONE, HOTEL_PHONE_HREF, CHECK_IN, CHECK_OUT } from "@/lib/constants";
+import { petPolicySummary } from "@/data/policies";
+import { pageSeo } from "@/data/seo";
 
 export const metadata: Metadata = {
-  title: "Hotel Policies | Velkommen Inn Clifton TX",
-  description:
-    "Velkommen Inn hotel policies — check-in at 2:00 PM, check-out at 11:00 AM, 100% non-smoking property, payment collected at check-in, $100 refundable cash deposit. Clifton, TX.",
-  alternates: { canonical: `${SITE_URL}/policies` },
-  openGraph: {
-    title: "Hotel Policies | Velkommen Inn – Clifton, TX",
-    description:
-      "Check-in 2 PM, check-out 11 AM, 100% non-smoking, payment at check-in, $100 refundable cash deposit — full policies for Velkommen Inn in Clifton, TX.",
-    url: `${SITE_URL}/policies`,
-  },
+  title: pageSeo.policies.title,
+  description: pageSeo.policies.description,
+  alternates: { canonical: pageSeo.policies.canonical },
+  openGraph: pageSeo.policies.openGraph,
 };
 
 export default function PoliciesPage() {
@@ -147,14 +143,7 @@ export default function PoliciesPage() {
             Pet Policy Summary
           </h2>
           <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm space-y-3">
-            {[
-              "Dogs are allowed only in designated pet-friendly rooms.",
-              "Guests must notify the hotel in advance if bringing a dog.",
-              "Dogs only. Cats and other pets are not permitted.",
-              "Maximum 2 dogs per room.",
-              "Pet fees apply and are collected at check-in.",
-              "Service animals as defined by the ADA are welcome at no additional charge.",
-            ].map((item) => (
+            {petPolicySummary.map((item) => (
               <div key={item} className="flex items-start gap-3">
                 <svg className="h-5 w-5 shrink-0 text-[#c9a84c] mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -164,10 +153,7 @@ export default function PoliciesPage() {
             ))}
           </div>
           <div className="mt-3">
-            <Link
-              href="/pet-policy"
-              className="text-sm font-semibold text-[#c9a84c] hover:underline font-sans"
-            >
+            <Link href="/pet-policy" className="text-sm font-semibold text-[#c9a84c] hover:underline font-sans">
               View full pet policy and fee schedule →
             </Link>
           </div>

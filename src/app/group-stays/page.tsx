@@ -1,32 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
+import GroupInquiryForm from "@/components/GroupInquiryForm";
+import CTASection from "@/components/CTASection";
 import { breadcrumbSchema } from "@/lib/schema";
-import { BOOKING_URL, HOTEL_PHONE, HOTEL_PHONE_HREF, BREAKFAST_HOURS, SITE_URL } from "@/lib/constants";
+import { HOTEL_PHONE, HOTEL_PHONE_HREF } from "@/lib/constants";
+import { groupAmenities } from "@/data/amenities";
+import { roomTypeNames } from "@/data/rooms";
+import { pageSeo } from "@/data/seo";
 
 export const metadata: Metadata = {
-  title: "Group Stays | Group Hotel Rooms in Clifton TX | Velkommen Inn",
-  description:
-    "Planning a group trip to Clifton, Lake Whitney, or Bosque County? Velkommen Inn offers group hotel rooms in Clifton TX. Call (254) 675-8999 to discuss room blocks.",
-  alternates: { canonical: `${SITE_URL}/group-stays` },
-  openGraph: {
-    title: "Group Hotel Rooms in Clifton TX | Velkommen Inn",
-    description:
-      "Velkommen Inn accommodates groups visiting Clifton TX, Lake Whitney, Meridian State Park, and Bosque County. Multiple room types, free breakfast, free parking. Call us to plan.",
-    url: `${SITE_URL}/group-stays`,
-  },
+  title: pageSeo.groupStays.title,
+  description: pageSeo.groupStays.description,
+  alternates: { canonical: pageSeo.groupStays.canonical },
+  openGraph: pageSeo.groupStays.openGraph,
 };
-
-const groupAmenities = [
-  { label: "Complimentary Breakfast", detail: `Daily ${BREAKFAST_HOURS}` },
-  { label: "Free On-Site Parking", detail: "Ample parking for vehicles and trailers" },
-  { label: "Level 2 EV Charging", detail: "Available for an additional fee" },
-  { label: "Free Wi-Fi", detail: "Throughout the property" },
-  { label: "Business Center", detail: "For group planning and printing needs" },
-  { label: "Guest Laundry", detail: "On-site laundry facilities" },
-  { label: "24-Hour Front Desk", detail: "Always available to assist your group" },
-  { label: "Indoor Corridor Access", detail: "Secure, climate-controlled hallways" },
-];
 
 export default function GroupStaysPage() {
   const crumbs = [{ name: "Group Stays", href: "/group-stays" }];
@@ -61,6 +49,39 @@ export default function GroupStaysPage() {
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16 space-y-14">
 
+        {/* Group CTA near top */}
+        <div className="bg-[#c9a84c]/10 border border-[#c9a84c]/30 rounded-lg p-7">
+          <h2 className="text-xl font-bold font-serif text-[#1a2e4a] mb-3">
+            Planning a Group Stay in Clifton?
+          </h2>
+          <p className="text-sm text-gray-700 font-sans leading-relaxed mb-5">
+            For group blocks, wedding parties, work crews, family gatherings, and event stays,
+            please contact Velkommen Inn directly so we can confirm availability, room types,
+            and current group options.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <a
+              href={HOTEL_PHONE_HREF}
+              className="inline-flex items-center justify-center gap-2 rounded bg-[#1a2e4a] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#142340] transition-colors"
+              aria-label={`Call Velkommen Inn at ${HOTEL_PHONE}`}
+            >
+              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.21 2.21z" />
+              </svg>
+              Call the Hotel
+            </a>
+            <a
+              href="#group-inquiry"
+              className="inline-flex items-center justify-center gap-2 rounded border border-[#1a2e4a] px-5 py-2.5 text-sm font-semibold text-[#1a2e4a] hover:bg-[#1a2e4a] hover:text-white transition-colors font-sans"
+            >
+              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              Send Us an Inquiry
+            </a>
+          </div>
+        </div>
+
         {/* Intro */}
         <div>
           <p className="text-gray-700 font-sans leading-relaxed text-base">
@@ -72,7 +93,7 @@ export default function GroupStaysPage() {
           </p>
           <p className="text-gray-700 font-sans leading-relaxed text-base mt-4">
             For group reservations and room block arrangements, please contact us directly by
-            phone. Our front desk is available 24 hours a day.
+            phone or submit an inquiry below. Our front desk is available 24 hours a day.
           </p>
         </div>
 
@@ -103,12 +124,7 @@ export default function GroupStaysPage() {
             We offer multiple room configurations to accommodate different group needs:
           </p>
           <ul className="space-y-2 text-sm text-gray-700 font-sans">
-            {[
-              "2 Queen Size Beds",
-              "1 King Size Bed",
-              "1 King Size Bed – ADA Accessible",
-              "2 Queen Size Beds – ADA Accessible",
-            ].map((r) => (
+            {roomTypeNames.map((r) => (
               <li key={r} className="flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#c9a84c] shrink-0" aria-hidden="true" />
                 {r}
@@ -120,6 +136,14 @@ export default function GroupStaysPage() {
               View all room details →
             </Link>
           </div>
+        </div>
+
+        {/* Group Inquiry Form */}
+        <div id="group-inquiry" className="scroll-mt-24">
+          <h2 className="text-2xl font-bold font-serif text-[#1a2e4a] mb-6">
+            Submit a Group Inquiry
+          </h2>
+          <GroupInquiryForm />
         </div>
 
         {/* Internal links */}
@@ -138,34 +162,12 @@ export default function GroupStaysPage() {
           </Link>
         </div>
 
-        {/* CTA */}
-        <div className="bg-[#1a2e4a] text-white rounded-lg p-8 text-center">
-          <h2 className="text-xl font-bold font-serif mb-3">Plan Your Group Stay in Clifton, TX</h2>
-          <p className="text-gray-300 text-sm font-sans mb-6">
-            Call us directly to discuss availability and group hotel room arrangements.
-            Our front desk is available 24 hours a day.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a
-              href={HOTEL_PHONE_HREF}
-              className="inline-flex items-center justify-center gap-2 rounded bg-[#c9a84c] px-6 py-2.5 text-sm font-semibold text-[#1a2e4a] hover:bg-[#b8943d] transition-colors"
-              aria-label={`Call Velkommen Inn at ${HOTEL_PHONE} to plan your group stay`}
-            >
-              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.21 2.21z" />
-              </svg>
-              {HOTEL_PHONE}
-            </a>
-            <a
-              href={BOOKING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded border border-white/30 px-6 py-2.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors font-sans"
-            >
-              Book Rooms Online
-            </a>
-          </div>
-        </div>
+        <CTASection
+          heading="Plan Your Group Stay in Clifton, TX"
+          subtext="Call us directly to discuss availability and group hotel room arrangements. Our front desk is available 24 hours a day."
+          bookLabel="Book Rooms Online"
+          phoneLabel={HOTEL_PHONE}
+        />
 
       </div>
     </>

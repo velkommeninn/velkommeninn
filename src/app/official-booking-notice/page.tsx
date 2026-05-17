@@ -2,19 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
-import { HOTEL_NAME, HOTEL_PHONE, HOTEL_PHONE_HREF, BOOKING_URL, BOOK_DIRECT_MESSAGE, SITE_URL } from "@/lib/constants";
+import { HOTEL_NAME, HOTEL_PHONE, HOTEL_PHONE_HREF, BOOKING_URL, BOOK_DIRECT_MESSAGE } from "@/lib/constants";
+import { pageSeo } from "@/data/seo";
 
 export const metadata: Metadata = {
-  title: "Official Booking Notice | Velkommen Inn | Clifton, TX",
-  description:
-    "Official notice from Velkommen Inn in Clifton, TX — book direct at velkommeninncliftontx.com or call (254) 675-8999 to avoid third-party fees and ensure accurate hotel information.",
-  alternates: { canonical: `${SITE_URL}/official-booking-notice` },
-  openGraph: {
-    title: "Official Booking Notice | Velkommen Inn – Clifton, TX",
-    description:
-      "Book direct at Velkommen Inn official website or call (254) 675-8999. Avoid third-party booking fees and inaccurate hotel policies.",
-    url: `${SITE_URL}/official-booking-notice`,
-  },
+  title: pageSeo.officialBookingNotice.title,
+  description: pageSeo.officialBookingNotice.description,
+  alternates: { canonical: pageSeo.officialBookingNotice.canonical },
+  openGraph: pageSeo.officialBookingNotice.openGraph,
 };
 
 export default function OfficialBookingNoticePage() {

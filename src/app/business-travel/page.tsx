@@ -1,56 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
+import AmenityCard from "@/components/AmenityCard";
+import CTASection from "@/components/CTASection";
 import { breadcrumbSchema } from "@/lib/schema";
-import { BOOKING_URL, HOTEL_PHONE, HOTEL_PHONE_HREF, BREAKFAST_HOURS, CHECK_IN, CHECK_OUT, SITE_URL } from "@/lib/constants";
+import { CHECK_IN, CHECK_OUT, HOTEL_PHONE } from "@/lib/constants";
+import { businessTravelFeatures } from "@/data/amenities";
+import { pageSeo } from "@/data/seo";
 
 export const metadata: Metadata = {
-  title: "Business Travel | Business Hotel in Clifton TX | Velkommen Inn",
-  description:
-    "Velkommen Inn is a business hotel in Clifton TX with free Wi-Fi, business center, free parking, Level 2 EV charging, and 24-hour front desk. Book direct hotel Clifton TX.",
-  alternates: { canonical: `${SITE_URL}/business-travel` },
-  openGraph: {
-    title: "Business Hotel in Clifton TX | Velkommen Inn",
-    description:
-      "Reliable Wi-Fi, business center, free parking, indoor corridor access, and 24-hour front desk at Velkommen Inn — the business hotel in Clifton, TX.",
-    url: `${SITE_URL}/business-travel`,
-  },
+  title: pageSeo.businessTravel.title,
+  description: pageSeo.businessTravel.description,
+  alternates: { canonical: pageSeo.businessTravel.canonical },
+  openGraph: pageSeo.businessTravel.openGraph,
 };
-
-const bizFeatures = [
-  {
-    title: "Free High-Speed Wi-Fi",
-    detail: "Complimentary Wi-Fi throughout the property — in your room and all common areas — so you stay connected.",
-  },
-  {
-    title: "Business Center",
-    detail: "On-site business center available for printing, copying, and other work tasks.",
-  },
-  {
-    title: "Free On-Site Parking",
-    detail: "Ample free parking for all guests. No daily parking fees.",
-  },
-  {
-    title: "Level 2 EV Charging",
-    detail: "Electric vehicle charging available on-site for an additional fee.",
-  },
-  {
-    title: "24-Hour Front Desk",
-    detail: "Our front desk is staffed around the clock, accommodating early arrivals, late departures, and any requests during your stay.",
-  },
-  {
-    title: "Indoor Corridor Access",
-    detail: "All rooms accessible via secure, climate-controlled interior hallways — no outdoor walkways to navigate.",
-  },
-  {
-    title: "Complimentary Breakfast",
-    detail: `Start your workday with a complimentary breakfast served daily from ${BREAKFAST_HOURS}.`,
-  },
-  {
-    title: "In-Room Work Amenities",
-    detail: "Every room includes climate control, flat-screen TV, mini fridge, microwave, and coffee maker.",
-  },
-];
 
 export default function BusinessTravelPage() {
   const crumbs = [{ name: "Business Travel", href: "/business-travel" }];
@@ -98,16 +61,8 @@ export default function BusinessTravelPage() {
             Built for Business Travelers in Clifton, TX
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {bizFeatures.map((item) => (
-              <div key={item.title} className="flex items-start gap-4 bg-white rounded-lg border border-gray-100 p-5 shadow-sm">
-                <svg className="h-5 w-5 shrink-0 text-[#c9a84c] mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <div>
-                  <h3 className="text-sm font-semibold text-[#1a2e4a] mb-1">{item.title}</h3>
-                  <p className="text-xs text-gray-600 font-sans leading-relaxed">{item.detail}</p>
-                </div>
-              </div>
+            {businessTravelFeatures.map((item) => (
+              <AmenityCard key={item.title} item={item} />
             ))}
           </div>
         </div>
@@ -156,33 +111,12 @@ export default function BusinessTravelPage() {
           </Link>
         </div>
 
-        {/* CTA */}
-        <div className="bg-[#1a2e4a] text-white rounded-lg p-8 text-center">
-          <h2 className="text-xl font-bold font-serif mb-3">Book Your Business Stay in Clifton, TX</h2>
-          <p className="text-gray-300 text-sm font-sans mb-6">
-            Book direct for the best available direct rate and direct support from the hotel.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a
-              href={BOOKING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded bg-[#c9a84c] px-6 py-2.5 text-sm font-semibold text-[#1a2e4a] hover:bg-[#b8943d] transition-colors"
-            >
-              Book Direct
-            </a>
-            <a
-              href={HOTEL_PHONE_HREF}
-              className="inline-flex items-center justify-center gap-2 rounded border border-white/30 px-6 py-2.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors font-sans"
-              aria-label={`Call Velkommen Inn at ${HOTEL_PHONE}`}
-            >
-              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.21 2.21z" />
-              </svg>
-              Call {HOTEL_PHONE}
-            </a>
-          </div>
-        </div>
+        <CTASection
+          heading="Book Your Business Stay in Clifton, TX"
+          subtext="Book direct for the best available direct rate and direct support from the hotel."
+          bookLabel="Book Direct"
+          phoneLabel={`Call ${HOTEL_PHONE}`}
+        />
 
       </div>
     </>

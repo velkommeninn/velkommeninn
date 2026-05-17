@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#f9f5ef"/>
+  <rect x="340" y="240" width="120" height="120" rx="8" fill="#e5e0d8"/>
+  <path d="M370 300 L400 270 L430 300 M385 300 L385 340 L415 340 L415 300" fill="none" stroke="#c9a84c" stroke-width="3" stroke-linejoin="round"/>
+  <text x="400" y="390" font-family="Georgia, serif" font-size="16" fill="#1a2e4a" text-anchor="middle">Velkommen Inn</text>
+  <text x="400" y="412" font-family="Arial, sans-serif" font-size="13" fill="#9ca3af" text-anchor="middle">Photo coming soon</text>
+</svg>

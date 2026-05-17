@@ -1,39 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
+import CTASection from "@/components/CTASection";
 import { breadcrumbSchema } from "@/lib/schema";
-import { BOOKING_URL, HOTEL_PHONE, HOTEL_PHONE_HREF, SITE_URL } from "@/lib/constants";
+import { HOTEL_PHONE } from "@/lib/constants";
+import { petFees, petRules } from "@/data/policies";
+import { pageSeo } from "@/data/seo";
 
 export const metadata: Metadata = {
-  title: "Pet Policy | Dog Friendly Hotel in Clifton TX | Velkommen Inn",
-  description:
-    "Velkommen Inn is a dog friendly hotel in Clifton, TX. Dogs welcome in designated rooms — max 2 dogs, pet fees from $35. Cats and other pets not permitted. ADA service animals at no charge.",
-  alternates: { canonical: `${SITE_URL}/pet-policy` },
-  openGraph: {
-    title: "Pet Policy | Dog Friendly Hotel in Clifton TX | Velkommen Inn",
-    description:
-      "Traveling with your dog to Clifton TX? Velkommen Inn welcomes dogs in designated pet-friendly rooms. Max 2 dogs. Pet fees from $35. Notify hotel in advance.",
-    url: `${SITE_URL}/pet-policy`,
-  },
+  title: pageSeo.petPolicy.title,
+  description: pageSeo.petPolicy.description,
+  alternates: { canonical: pageSeo.petPolicy.canonical },
+  openGraph: pageSeo.petPolicy.openGraph,
 };
-
-const petFees = [
-  { situation: "1 dog · 1 night", fee: "$35" },
-  { situation: "2 dogs · 1 night", fee: "$50" },
-  { situation: "1 dog · 2 nights", fee: "$50" },
-  { situation: "2 dogs · 2 nights", fee: "$60" },
-];
-
-const rules = [
-  "Dogs are allowed only in designated pet-friendly rooms.",
-  "Guests must notify the hotel in advance if bringing a dog.",
-  "Dogs only. Cats and other pets are not permitted.",
-  "Maximum 2 dogs per room.",
-  "Pet fees apply and are collected at check-in.",
-  "Dogs must be kept on a leash in all common areas.",
-  "Guests are responsible for any pet-related damages.",
-  "The 100% non-smoking policy applies in all pet-friendly rooms.",
-];
 
 export default function PetPolicyPage() {
   const crumbs = [{ name: "Pet Policy", href: "/pet-policy" }];
@@ -70,11 +49,7 @@ export default function PetPolicyPage() {
         {/* Quick summary */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6" aria-label="Pet policy at a glance">
           <div className="bg-white rounded-lg border border-gray-200 p-6 text-center shadow-sm">
-            <div
-              role="img"
-              aria-label="Dog icon"
-              className="text-3xl mb-2"
-            >🐕</div>
+            <div role="img" aria-label="Dog icon" className="text-3xl mb-2">🐕</div>
             <h2 className="font-bold text-[#1a2e4a] font-serif mb-1">Dogs Only</h2>
             <p className="text-xs text-gray-500 font-sans">Cats and other pets are not permitted</p>
           </div>
@@ -120,7 +95,7 @@ export default function PetPolicyPage() {
         <div>
           <h2 className="text-2xl font-bold font-serif text-[#1a2e4a] mb-6">Pet Rules</h2>
           <ul className="space-y-3" aria-label="Pet rules at Velkommen Inn">
-            {rules.map((rule) => (
+            {petRules.map((rule) => (
               <li key={rule} className="flex items-start gap-3">
                 <svg className="h-5 w-5 shrink-0 text-[#c9a84c] mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -154,36 +129,12 @@ export default function PetPolicyPage() {
           </Link>
         </div>
 
-        {/* Contact to book */}
-        <div className="bg-[#1a2e4a] text-white rounded-lg p-8 text-center">
-          <h2 className="text-xl font-bold font-serif mb-3">
-            Traveling with Your Dog to Clifton, TX?
-          </h2>
-          <p className="text-gray-300 text-sm font-sans mb-6">
-            Please notify us before your arrival so we can assign a pet-friendly room.
-            Book direct or call our 24-hour front desk.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a
-              href={BOOKING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded bg-[#c9a84c] px-6 py-2.5 text-sm font-semibold text-[#1a2e4a] hover:bg-[#b8943d] transition-colors"
-            >
-              Book Direct
-            </a>
-            <a
-              href={HOTEL_PHONE_HREF}
-              className="inline-flex items-center justify-center gap-2 rounded border border-white/30 px-6 py-2.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors font-sans"
-              aria-label={`Call Velkommen Inn at ${HOTEL_PHONE}`}
-            >
-              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.21 2.21z" />
-              </svg>
-              Call {HOTEL_PHONE}
-            </a>
-          </div>
-        </div>
+        <CTASection
+          heading="Traveling with Your Dog to Clifton, TX?"
+          subtext="Please notify us before your arrival so we can assign a pet-friendly room. Book direct or call our 24-hour front desk."
+          bookLabel="Book Direct"
+          phoneLabel={`Call ${HOTEL_PHONE}`}
+        />
 
       </div>
     </>
