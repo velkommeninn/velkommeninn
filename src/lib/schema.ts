@@ -1,9 +1,9 @@
-import { SITE_URL, BOOKING_URL } from "./constants";
+import { SITE_URL, BOOKING_URL, HOTEL_PHONE } from "./constants";
 
 const BASE = {
   name: "Velkommen Inn",
   url: SITE_URL,
-  telephone: "(254) 675-8999",
+  telephone: HOTEL_PHONE,
   address: {
     "@type": "PostalAddress",
     streetAddress: "1215 N Avenue G",

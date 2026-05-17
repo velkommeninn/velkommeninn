@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema, localBusinessSchema } from "@/lib/schema";
-import { HOTEL_NAME, HOTEL_ADDRESS, HOTEL_PHONE, HOTEL_PHONE_HREF, BOOKING_URL, CHECK_IN, CHECK_OUT, BREAKFAST_HOURS, SITE_URL } from "@/lib/constants";
+import { HOTEL_NAME, HOTEL_PHONE, HOTEL_PHONE_HREF, BOOKING_URL, CHECK_IN, CHECK_OUT, BREAKFAST_HOURS, SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Contact | Velkommen Inn | Hotel in Clifton TX | (254) 675-8999",
